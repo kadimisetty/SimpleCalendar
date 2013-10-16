@@ -1,0 +1,17 @@
+{
+  "name": "SimpleCalendar",
+  "version": "0.0.1",
+  "homepage": "https://github.com/kadimisetty/SimpleCalendar",
+  "authors": [
+    "Sri Kadimisetty <s@sri.io>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
