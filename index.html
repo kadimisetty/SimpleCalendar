@@ -7,8 +7,8 @@
     <meta name="description" content="A Simple Work Day Calendar ">
     <meta name="author" content="Sri Kadimisetty">
 
-    <!-- [Normalize](https://github.com/necolas/normalize.css) -->
-    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+    <!-- [PureCSS](https://github.com/yui/pure/) -->
+    <link rel="stylesheet" href="bower_components/pure/pure-min.css">
 
     <!-- [jQuery](http://jquery.com) -->
     <script src="bower_components/jquery/jquery.min.js"></script>
@@ -56,10 +56,12 @@
 -->
 
 <section data-ng-controller="DateCtrl">
+  <form class="pure-form" action="">
   <fieldset>
-    <label>Pick a date!</label>
-    <input data-datepicker="chosenDate" type="text" name="date"><br />
+    <legend>Pick a date!</legend>
+    <input data-datepicker="chosenDate" type="text" name="date" class="form-control" id="date">
   </fieldset>
+  </form>
 
   <h2>Tasks for {{chosenDate}}</h2>
   <ul>
