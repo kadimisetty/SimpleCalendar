@@ -22,6 +22,8 @@
 
     <!-- [AngularJS](http://angularjs.org) -->
     <script src="bower_components/angular/angular.js"></script>
+    <!-- [Angular-LocalStorage](https://github.com/grevory/angular-local-storage) -->
+    <script src="bower_components/angular-localstorage/angular-local-storage.js"></script>
 
     <!-- Application -->
     <script src="assets/js/app.js"></script>
@@ -32,6 +34,7 @@
         <![endif]-->
 
     <!-- Initiate pickadate -->
+    <!--
     <script type="text/javascript">
       $(function(){$('.datepicker').pickadate({
               firstDay: 1,                  // Start week with Monday
@@ -39,14 +42,31 @@
               format: 'dddd, dd mmm, yyyy', // Show day before date
       })});
     </script>
+    -->
 
 </head>
 <body data-ng-app="SimpleWorkCal">
 
+<!--
 <section data-ng-controller="DateCtrl">
   <fieldset>
     <input class="datepicker" type="text" name="date" data-ng-model="user.date"><br />
   </fieldset>
+</section>
+-->
+
+<section data-ng-controller="DateCtrl">
+  <fieldset>
+    <label>Pick a date!</label>
+    <input data-datepicker="chosenDate" type="text" name="date"><br />
+  </fieldset>
+
+  <h2>Tasks for {{chosenDate}}</h2>
+  <ul>
+    <li data-ng-repeat="task in tasks">{{task}}</li>
+  </ul>
+
+
 </section>
 
 </body>

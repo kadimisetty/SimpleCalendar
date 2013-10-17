@@ -20,6 +20,7 @@
     "html5shiv": "~3.7.0",
     "less": "1.4.2",
     "jquery": "~2.0.3",
-    "pickadate": "~3.3.0"
+    "pickadate": "~3.3.0",
+    "angular-localstorage": "*"
   }
 }
