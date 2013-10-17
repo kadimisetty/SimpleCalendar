@@ -7,21 +7,48 @@
     <meta name="description" content="A Simple Work Day Calendar ">
     <meta name="author" content="Sri Kadimisetty">
 
-    <!-- reset -->
-    <link rel="stylesheet/css" type="text/css" href="bower_components/normalize-css/normalize.css">
+    <!-- [Normalize](https://github.com/necolas/normalize.css) -->
+    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
 
-    <!-- less -->
-    <link rel="stylesheet/less" type="text/css" href="assets/styles/stylesheet.less">
-    <script src="bower_components/less/dist/less-1.4.2.js" type="text/javascript"></script>
+    <!-- [jQuery](http://jquery.com) -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
 
+    <!-- [pickadate.js](https://github.com/amsul/pickadate.js) -->
+    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.css">
+    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.date.css">
+    <script src="bower_components/pickadate/lib/picker.js"></script>
+    <script src="bower_components/pickadate/lib/picker.date.js"></script>
+    <script src="bower_components/pickadate/lib/legacy.js"></script>
+
+    <!-- [AngularJS](http://angularjs.org) -->
+    <script src="bower_components/angular/angular.js"></script>
+
+    <!-- Application -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- [HTML5Shiv](https://github.com/aFarkas/html5shiv) -->
     <!--[if lt IE 9]>
         <script src="components/html5shiv/html5shiv.js"></script>
-    <![endif]-->
+        <![endif]-->
+
+    <!-- Initiate pickadate -->
+    <script type="text/javascript">
+      $(function(){$('.datepicker').pickadate({
+              firstDay: 1,                  // Start week with Monday
+              disable: [6,7],               // Disable weekends
+              format: 'dddd, dd mmm, yyyy', // Show day before date
+      })});
+    </script>
 
 </head>
-<body>
+<body data-ng-app="SimpleWorkCal">
 
-    <script src="bower_components/angular/angular.js"></script>
+<section data-ng-controller="DateCtrl">
+  <fieldset>
+    <input class="datepicker" type="text" name="date" data-ng-model="user.date"><br />
+  </fieldset>
+</section>
+
 </body>
 </html>
 
