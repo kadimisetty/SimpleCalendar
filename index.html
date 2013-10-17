@@ -7,15 +7,23 @@
     <meta name="description" content="A Simple Work Day Calendar ">
     <meta name="author" content="Sri Kadimisetty">
 
-    <!-- [PureCSS](https://github.com/yui/pure/) -->
-    <link rel="stylesheet" href="bower_components/pure/pure-min.css">
+
+    <!-- [NormalizeCSS](https://github.com/yui/pure/) -->
+    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+
+    <!-- [lesscss]() -->
+    <link rel="stylesheet/less" type="text/css" href="assets/styles/stylesheet.less">
+    <script src="bower_components/less/dist/less-1.4.2.min.js"></script>
+
 
     <!-- [jQuery](http://jquery.com) -->
     <script src="bower_components/jquery/jquery.min.js"></script>
 
     <!-- [pickadate.js](https://github.com/amsul/pickadate.js) -->
-    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.css">
-    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.date.css">
+    <!-- <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.css"> -->
+    <!-- <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.date.css"> -->
+    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/classic.css">
+    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/classic.date.css">
     <script src="bower_components/pickadate/lib/picker.js"></script>
     <script src="bower_components/pickadate/lib/picker.date.js"></script>
     <script src="bower_components/pickadate/lib/legacy.js"></script>
@@ -47,29 +55,19 @@
 </head>
 <body data-ng-app="SimpleWorkCal">
 
-<!--
-<section data-ng-controller="DateCtrl">
-  <fieldset>
-    <input class="datepicker" type="text" name="date" data-ng-model="user.date"><br />
-  </fieldset>
-</section>
--->
+<div id="container">
 
-<section data-ng-controller="DateCtrl">
-  <form class="pure-form" action="">
-  <fieldset>
-    <legend>Pick a date!</legend>
-    <input data-datepicker="chosenDate" type="text" name="date" class="form-control" id="date">
-  </fieldset>
-  </form>
+<section data-ng-controller="DateCtrl" class="calendar">
+    <input data-datepicker="chosenDate" type="text" name="date" id="date">
+  
 
-  <h2>Tasks for {{chosenDate}}</h2>
+  <h2>Tasks for {{chosenDate | date: 'd MMMM, y'}}</h2>
   <ul>
     <li data-ng-repeat="task in tasks">{{task}}</li>
   </ul>
-
-
 </section>
+
+</div><!-- /container -->
 
 </body>
 </html>

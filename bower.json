@@ -21,6 +21,7 @@
     "jquery": "~2.0.3",
     "pickadate": "~3.3.0",
     "angular-localstorage": "*",
-    "pure": "~0.3.0"
+    "normalize-css": "~2.1.3",
+    "reset-css": "~2.0.20110126"
   }
 }

@@ -49,6 +49,7 @@
  * The holder is the base of the picker.
  */
 .picker__holder {
+
   position: absolute;
   background: #ffffff;
   border: 1px solid #aaaaaa;
@@ -71,6 +72,12 @@
   -webkit-transition: all 0.15s ease-out, max-height 0 0.15s;
   -moz-transition: all 0.15s ease-out, max-height 0 0.15s;
   transition: all 0.15s ease-out, max-height 0 0.15s;
+  
+  /* My changes to center to inut field 
+   * SRI
+   * */
+  margin: 0 auto;
+  width: 466px;
 }
 /**
  * When the picker opens...
