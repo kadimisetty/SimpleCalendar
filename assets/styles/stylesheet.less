@@ -1,15 +1,13 @@
-
-@peter-river: #3498db;
-@clouds:#ecf0f1;
+@import "flatcolors.less";
 @pale-blue: #B1DCFB;
+@calendar-bg: @peter-river;
+
 @text-color: @clouds;
-
 @helv-family:  "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-
 @date-family:@helv-family;
 
 body {
-    background-color: #ddd;
+    background-color: @silver;
     font-size: 18px;
 }
 
@@ -29,7 +27,7 @@ body {
         text-align: center;
         box-sizing: border-box;
         width: 100%;
-        background-color:@peter-river;
+        background-color:@calendar-bg;
         color: @text-color;
         font-size: 1.4em;
         font-family: @date-family;
@@ -40,7 +38,7 @@ body {
         }
 
         &:hover {
-            background-color: lighten(@peter-river, 10%);
+            background-color: lighten(@calendar-bg, 10%);
         }
 
     }
