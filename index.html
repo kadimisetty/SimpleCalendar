@@ -11,11 +11,6 @@
     <!-- [NormalizeCSS](https://github.com/yui/pure/) -->
     <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
 
-    <!-- [lesscss]() -->
-    <link rel="stylesheet/less" type="text/css" href="assets/styles/stylesheet.less">
-    <script src="bower_components/less/dist/less-1.4.2.min.js"></script>
-
-
     <!-- [jQuery](http://jquery.com) -->
     <script src="bower_components/jquery/jquery.min.js"></script>
 
@@ -33,6 +28,11 @@
     <!-- [Angular-LocalStorage](https://github.com/grevory/angular-local-storage) -->
     <script src="bower_components/angular-localstorage/angular-local-storage.js"></script>
 
+
+    <!-- [lesscss]() -->
+    <link rel="stylesheet/less" type="text/css" href="assets/styles/stylesheet.less">
+    <script src="bower_components/less/dist/less-1.4.2.min.js"></script>
+
     <!-- Application -->
     <script src="assets/js/app.js"></script>
 
@@ -40,33 +40,25 @@
     <!--[if lt IE 9]>
         <script src="components/html5shiv/html5shiv.js"></script>
         <![endif]-->
-
-    <!-- Initiate pickadate -->
-    <!--
-    <script type="text/javascript">
-      $(function(){$('.datepicker').pickadate({
-              firstDay: 1,                  // Start week with Monday
-              disable: [6,7],               // Disable weekends
-              format: 'dddd, dd mmm, yyyy', // Show day before date
-      })});
-    </script>
-    -->
-
 </head>
 <body data-ng-app="SimpleWorkCal">
 
-<div id="container">
+<div id="container" data-ng-controller="DateCtrl">
+  <h2 class="debug title">{{chosenDate | date: 'EEEE' | uppercase}}</h2>
+  <section class="calendar">
+      <input data-datepicker="chosenDate" type="text" name="date" id="date">
 
-<section data-ng-controller="DateCtrl" class="calendar">
-    <input data-datepicker="chosenDate" type="text" name="date" id="date">
-  
+      <div class="tasks">
+        <ul class="morning">
+          <li data-ng-repeat="task in tasks.slice(0,5)">{{task.hour}}. {{task.detail}}</li>
+        </ul>
+        <ul class="evening">
+          <li data-ng-repeat="task in tasks.slice(5, 10)">{{task.hour}}. {{task.detail}}</li>
+        </ul>
+      </div><!-- \tasks  -->
+  </section>
 
-  <h2>Tasks for {{chosenDate | date: 'd MMMM, y'}}</h2>
-  <ul>
-    <li data-ng-repeat="task in tasks">{{task}}</li>
-  </ul>
-</section>
-
+  <footer class="clear">Credits!</footer>
 </div><!-- /container -->
 
 </body>

@@ -1,14 +1,17 @@
 angular.module('SimpleWorkCal', [])
 .factory('tasks', function() {
-	return [ 'Buy some milk', 
-				'something here',
-				'Visit the bank',
-				'Pay bills',
-				'Walk the monkey',
-				'make some chilli',
-				'pack dinner',
-				'wash car',
-				'brush teeth' ];
+	return [ 
+		{'hour': '8 am'  , 'detail' : 'Buy some milk here'},
+		{'hour': '9 am'  , 'detail' : 'Visit the bank'},
+		{'hour': '10 am' , 'detail' : 'Pay bills'},
+		{'hour': '11 am' , 'detail' : 'Walk the cats'},
+		{'hour': '12 pm' , 'detail' : 'Make some chilli!'},
+		{'hour': '1 pm'  , 'detail' : 'Pack evening snacks'},
+		{'hour': '2 pm'  , 'detail' : 'Wash your Ferrari'},
+		{'hour': '3 pm'  , 'detail' : 'Brush teeth'},
+		{'hour': '4 pm'  , 'detail' : 'Brush teeth'},
+		{'hour': '5 pm'  , 'detail' : 'Brush teeth'}
+	];
 })
 
 .controller('DateCtrl', function($scope, tasks) {
@@ -35,6 +38,8 @@ angular.module('SimpleWorkCal', [])
 		element.pickadate({
 			firstDay: 1, // Start with a Monday
 			clear: '', //Disable the clear button
+			format: 'd mmm yyyy',
+			today:'Today',
 
 			onStart: function() {
 				//Update initial date into the scope

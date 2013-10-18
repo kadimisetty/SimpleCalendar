@@ -1,10 +1,16 @@
 @import "flatcolors.less";
 @pale-blue: #B1DCFB;
-@calendar-bg: @peter-river;
+@calendar-bg: @green-sea;
 
 @text-color: @clouds;
 @helv-family:  "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+@avenir-family: 'Avenir Next Condensed', 'Arial Narrow', sans-serif;
+@avenir-book-family: 'Avenir Book', 'Avenir Next Condensed', 'Arial Narrow', sans-serif;
+
 @date-family:@helv-family;
+@tasks-font: @avenir-book-family;
+
+@calendar-width: 466px;
 
 body {
     background-color: @silver;
@@ -12,8 +18,7 @@ body {
 }
 
 #container {
-    // width: 466px;
-    width: 466px;
+    width: @calendar-width;
     margin: 50px auto;
     padding: 0;
 }
@@ -22,8 +27,8 @@ body {
     background: #eee;
 
     input {
+        padding: 1em;
         margin: 0;
-        height: 4em;
         text-align: center;
         box-sizing: border-box;
         width: 100%;
@@ -45,34 +50,76 @@ body {
 }
 
 
-//Picker
+// pickadate's Picker Holder
 .picker__holder {
-    //Original Picker Holder values
-/*
-  position: absolute;
-  background: #ffffff;
-  border: 1px solid #aaaaaa;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  min-width: 176px;
-  max-width: 466px;
-  -webkit-border-radius: 0 0 5px 5px;
-  -moz-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px;
-  max-height: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  -moz-opacity: 0;
-  opacity: 0;
-  -webkit-transform: translateY(-1em) perspective(600px) rotateX(10deg);
-  -moz-transform: translateY(-1em) perspective(600px) rotateX(10deg);
-  transform: translateY(-1em) perspective(600px) rotateX(10deg);
-  -webkit-transition: all 0.15s ease-out, max-height 0 0.15s;
-  -moz-transition: all 0.15s ease-out, max-height 0 0.15s;
-  transition: all 0.15s ease-out, max-height 0 0.15s;
-  */
+    magin: 0 auto;
+    width: @calendar-width;
+    border: 1px solid @clouds;
 
-  margin: 0 auto;
-  width: 466px;
+}
+
+.tasks {
+    padding: 0;
+    margin: 0;
+    background-color: @green-sea;
+
+    .morning {
+        float: left;
+        padding-top: 4em;
+        li {border-right: 0; }
+
+        background-image:url('smiley.gif');
+        background-repeat:no-repeat;
+        background-attachment:fixed;
+        background-position:center; 
+    }
+
+    .evening {
+        float: right;
+        padding-top: 4em;
+        li { border-left: 0; }
+
+        background-image:url('smiley.gif');
+        background-repeat:no-repeat;
+        background-attachment:fixed;
+        background-position:center; 
+    }
+
+    ul {
+        background-color: inherit;
+        border: 1px solid @emeralds;
+        margin: 0;
+        padding: 0;
+        width: (@calendar-width/2) - 2;
+        display: block;
+        float: left;
+    }
+
+    list-style: none;
+    li {
+        color: @sun-flower;
+        background-color: inherit;
+        border: 1px solid @emeralds;
+        height: 4em;
+        text-overflow: hidden;
+        display: block;
+        padding: 0.5em;
+        font-size: 0.8em;
+        font-family: @tasks-font;
+
+        &:hover {
+            background-color: lighten(@green-sea, 10%);
+        }
+    }
+
+}
+
+h2 {
+    text-align: center;
+    font-size: 0.6em;
+    font-family: @tasks-font;
+}
+
+.clear {
+    clear: both;
 }
