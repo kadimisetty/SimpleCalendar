@@ -1,19 +1,44 @@
-@import "flatcolors.less";
-@pale-blue: #B1DCFB;
-@calendar-bg: @green-sea;
 
-@text-color: @clouds;
+
+// fonts
 @helv-family:  "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 @avenir-family: 'Avenir Next Condensed', 'Arial Narrow', sans-serif;
 @avenir-book-family: 'Avenir Book', 'Avenir Next Condensed', 'Arial Narrow', sans-serif;
 
-@date-family:@helv-family;
+@logo-font: @avenir-family;
+@date-font:@avenir-book-family;
 @tasks-font: @avenir-book-family;
+@footer-font: @avenir-book-family;
 
+// Colors
+@pale-blue: #B1DCFB;
+@import "flatcolors.less";
+
+@body-bg: lighten(@clouds, 20%);
+
+@tasks-color: @clouds;
+@tasks-bg-color: @peter-river;
+@tasks-border-color: lighten(@peter-river, 10%);
+
+@calendar-bg: lighten(@peter-river, 5%);
+@text-color: @clouds;
+
+@logo-color: @belize-hole;
+@footer-color: @peter-river;
+
+// Sizes
 @calendar-width: 466px;
+// @calendar-height: 660px;
 
 body {
-    background-color: @silver;
+    background-color: @body-bg;
+    // background-image: url('../img/deskbg.JPG');
+    background-image: url('../img/deskbg-optimised-blue.JPG');
+    background-repeat: no-repeat;
+    // background-position: -300px -20px;
+    background-position: center top;
+    padding-top: 10px;
+
     font-size: 18px;
 }
 
@@ -25,17 +50,20 @@ body {
 
 .calendar {
     background: #eee;
+    // height: @calendar-height;
+    text-overflow: hidden;
 
     input {
-        padding: 1em;
+        padding: 1em 0;
         margin: 0;
         text-align: center;
         box-sizing: border-box;
-        width: 100%;
-        background-color:@calendar-bg;
+        width: @calendar-width;
+        background-color:lighten(@calendar-bg, 10%);
         color: @text-color;
         font-size: 1.4em;
-        font-family: @date-family;
+        font-family: @date-font;
+        font-weight: heavy;
 
         outline: none;
         &:focus {
@@ -60,55 +88,53 @@ body {
 
 .tasks {
     padding: 0;
+    padding-top: 2em;
     margin: 0;
-    background-color: @green-sea;
+    background-color: @tasks-bg-color;
 
-    .morning {
-        float: left;
-        padding-top: 4em;
-        li {border-right: 0; }
-
-        background-image:url('smiley.gif');
-        background-repeat:no-repeat;
-        background-attachment:fixed;
-        background-position:center; 
+    .morning, .evening {
+        li {
+        }
     }
 
-    .evening {
-        float: right;
-        padding-top: 4em;
-        li { border-left: 0; }
-
-        background-image:url('smiley.gif');
-        background-repeat:no-repeat;
-        background-attachment:fixed;
-        background-position:center; 
-    }
+    .morning { float: left; }
+    .evening { float: left;}
 
     ul {
         background-color: inherit;
-        border: 1px solid @emeralds;
+        // border: 1px solid @tasks-border-color;
         margin: 0;
         padding: 0;
-        width: (@calendar-width/2) - 2;
+        width: (@calendar-width/2);
         display: block;
         float: left;
     }
 
     list-style: none;
     li {
-        color: @sun-flower;
+        .hour{
+            padding-right: 0.4em;
+            color: fade(@tasks-color, 60%);
+        }
+        color: @tasks-color;
         background-color: inherit;
-        border: 1px solid @emeralds;
+        border: 1px solid @tasks-border-color;
         height: 4em;
         text-overflow: hidden;
         display: block;
-        padding: 0.5em;
+        padding: 1em;
         font-size: 0.8em;
         font-family: @tasks-font;
 
+        &:first-child {
+            border-top: 0;
+        }
+
         &:hover {
-            background-color: lighten(@green-sea, 10%);
+            background-color: lighten(@tasks-bg-color, 10%);
+            .hour {
+                color: @tasks-color;
+            }
         }
     }
 
@@ -122,4 +148,31 @@ h2 {
 
 .clear {
     clear: both;
+}
+
+
+footer {
+    padding-top: 2em;
+    color: @footer-color;
+    font-family: @footer-font;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+
+
+
+h1.logo {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-family: @logo-font;
+    font-weight: normal;
+    color: @logo-color;
+    // height: 50px;
+    // width: 50px;
+    // display: block;
+    margin: 0 auto;
+    margin-bottom: 147px;
+
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -43,22 +43,25 @@
 </head>
 <body data-ng-app="SimpleWorkCal">
 
+
 <div id="container" data-ng-controller="DateCtrl">
-  <h2 class="debug title">{{chosenDate | date: 'EEEE' | uppercase}}</h2>
+  <!-- <h2 class="debug title">{{chosenDate | date: 'EEEE' | uppercase}}</h2> -->
+      <h1 class="logo">Simple Calendar</h1>
   <section class="calendar">
+
       <input data-datepicker="chosenDate" type="text" name="date" id="date">
 
       <div class="tasks">
         <ul class="morning">
-          <li data-ng-repeat="task in tasks.slice(0,5)">{{task.hour}}. {{task.detail}}</li>
+          <li data-ng-repeat="task in tasks.slice(0,5)"><span class="hour">{{task.hour}}</span> {{task.detail}}</li>
         </ul>
         <ul class="evening">
-          <li data-ng-repeat="task in tasks.slice(5, 10)">{{task.hour}}. {{task.detail}}</li>
+          <li data-ng-repeat="task in tasks.slice(5,10)"><span class="hour">{{task.hour}}</span> {{task.detail}}</li>
         </ul>
       </div><!-- \tasks  -->
   </section>
 
-  <footer class="clear">Credits!</footer>
+  <footer class="clear"><p>Copyright Sri Kadimisetty 2013</p></footer>
 </div><!-- /container -->
 
 </body>
