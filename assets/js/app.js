@@ -1,6 +1,8 @@
 app = angular.module('SimpleWorkCal', [])
 
 app.factory('tasks', function() {
+	// A factory that hands over a mock data container
+	// Will be mapped into id with a date+hour as key
 	return [ 
 		{'hour': '8 am'  , 'detail' : 'Buy some milk here'},
 		{'hour': '9 am'  , 'detail' : 'Visit the bank'},
@@ -16,13 +18,13 @@ app.factory('tasks', function() {
 })
 
 app.controller('DateCtrl', function($scope, tasks) {
-	console.log(moment());
-	var currentDate = new Date();
-	$scope.chosenDate = currentDate;
+	// Start with a new date!
+	$scope.chosenDate = new Date();
+	// Load tasks from the factory into the scope
 	$scope.tasks = tasks;
 	
-	// Update the scope in case it's
-	// interrupted by another apply mid updating
+	// Protect updting scope from being 
+	// interrupted by another similar scope update
 	$scope.safeApply = function(fn) {
 		var phase = this.$root.$$phase;
 		if(phase == '$apply' || phase == '$digest') {
@@ -34,26 +36,32 @@ app.controller('DateCtrl', function($scope, tasks) {
 		}
 	};
 
+	// Perform update scope.model's current value
 	$scope.updateDetail = function(indx) {
 		console.log(indx)
 	}
 
+	// Perform when the user "cancels" out of an editing action
 	$scope.cancelEdit = function(detailValue) {
 		console.log('canceled doind - ', detailValue);
 	}
 
 })
 
+// Presetn a datepicker and associated actions
 app.directive('datepicker', function($parse) {
 	return function(scope, element, attrs) {
+		// Use $parse to access nested attributes
 		parsed = $parse(attrs.datepicker);
-		element.pickadate({
-			firstDay: 1, // Start with a Monday
-			clear: '', //Disable the clear button
-			format: 'd mmm yyyy',
-			today:'Today',
 
-			onStart: function() {
+		// Instantiate a pickadate and start with selected options
+		element.pickadate({
+			firstDay: 1,          // Start with a Monday
+			format: 'd mmm yyyy', // Use pickadats's date format syntax
+			today:'Today',        // Use this word to stand for today
+			clear: '',            // Disable the clear button
+
+			onStart: function() { // Run when the pickadate is started initially
 				//Update initial date into the scope
 				currentDate = parsed(scope); 
 				this.set('select', currentDate);
@@ -62,8 +70,7 @@ app.directive('datepicker', function($parse) {
 				});
 			},
 
-			onClose: function() {
-				// Update the scope with the latest date from the picker
+			onClose: function() { // Run when pickadate closes the calendar
 				latestDate = this.get();
 				scope.safeApply(function(){
 					parsed.assign(scope, latestDate);
@@ -73,14 +80,7 @@ app.directive('datepicker', function($parse) {
 	}
 })
 
-
-
-
-// More
-// http://plnkr.co/edit/EsW7mV?p=preview
-
-
-// On esc event
+// Hook to 'Esc' event
 app.directive('onEsc', function() {
   return function(scope, element, attrs) {
     element.bind('keydown', function(e) {
@@ -91,7 +91,7 @@ app.directive('onEsc', function() {
   };
 });
 
-// On enter event
+// Hook to 'Enter' event
 app.directive('onEnter', function() {
   return function(scope, elment, attrs) {
     elment.bind('keypress', function(e) {
@@ -102,14 +102,15 @@ app.directive('onEnter', function() {
   };
 });
 
-// Inline edit directive
 app.directive('inlineEdit', function($timeout) {
   return {
+
     scope: {
       model: '=inlineEdit',
       handleSave: '&onSave',
       handleCancel: '&onCancel'
     },
+
     link: function(scope, elm, attr) {
       var previousValue;
       
@@ -121,18 +122,19 @@ app.directive('inlineEdit', function($timeout) {
           elm.find('input')[0].focus();
         }, 0, false);
       };
+
       scope.save = function() {
         scope.editMode = false;
         scope.handleSave({value: scope.model});
       };
+
       scope.cancel = function() {
         scope.editMode = false;
         scope.model = previousValue;
         scope.handleCancel({value: scope.model});
       };
     },
-    templateUrl: 'inline-edit.html'
+
+    templateUrl: 'inline-edit.html' //Load template form this URL
   };
 });
-
-
