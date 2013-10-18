@@ -1,69 +1,88 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Simple Work Calendar</title>
+  <meta charset="UTF-8">
+  <title>Work Day Calendar</title>
 
-    <meta name="description" content="A Simple Work Day Calendar ">
-    <meta name="author" content="Sri Kadimisetty">
+  <meta name="description" content="A Work Day Calendar">
+  <meta name="author" content="Sri Kadimisetty">
 
+  <!-- [NormalizeCSS](http://necolas.github.io/normalize.css/) -->
+  <!-- <link rel="stylesheet" href="bower_components/normalize-css/normalize.css"> -->
+  <!-- [pure](http://necolas.github.io/normalize.css/) -->
+  <link rel="stylesheet" href="bower_components/pure/pure-min.css">
 
-    <!-- [NormalizeCSS](https://github.com/yui/pure/) -->
-    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+  <!-- [jQuery](http://jquery.com) -->
+  <script src="bower_components/jquery/jquery.min.js"></script>
 
-    <!-- [jQuery](http://jquery.com) -->
-    <script src="bower_components/jquery/jquery.min.js"></script>
+  <!-- [momentjs](http://momentjs.com) -->
+  <script src="bower_components/momentjs/moment.js"></script>
 
-    <!-- [pickadate.js](https://github.com/amsul/pickadate.js) -->
-    <!-- <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.css"> -->
-    <!-- <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.date.css"> -->
-    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/classic.css">
-    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/classic.date.css">
-    <script src="bower_components/pickadate/lib/picker.js"></script>
-    <script src="bower_components/pickadate/lib/picker.date.js"></script>
-    <script src="bower_components/pickadate/lib/legacy.js"></script>
+  <!-- [pickadate.js](https://github.com/amsul/pickadate.js) -->
+  <link rel="stylesheet" href="bower_components/pickadate/lib/themes/classic.css">
+  <link rel="stylesheet" href="bower_components/pickadate/lib/themes/classic.date.css">
+  <script src="bower_components/pickadate/lib/picker.js"></script>
+  <script src="bower_components/pickadate/lib/picker.date.js"></script>
+  <script src="bower_components/pickadate/lib/legacy.js"></script>
 
-    <!-- [AngularJS](http://angularjs.org) -->
-    <script src="bower_components/angular/angular.js"></script>
-    <!-- [Angular-LocalStorage](https://github.com/grevory/angular-local-storage) -->
-    <script src="bower_components/angular-localstorage/angular-local-storage.js"></script>
+  <!-- [AngularJS](http://angularjs.org) -->
+  <script src="bower_components/angular/angular.js"></script>
+  <!-- [Angular-LocalStorage](https://github.com/grevory/angular-local-storage) -->
+  <script src="bower_components/angular-localstorage/angular-local-storage.js"></script>
 
+  <!-- [lesscss](http://lesscss.org) -->
+  <link rel="stylesheet/less" type="text/css" href="assets/styles/stylesheet.less">
+  <script src="bower_components/less/dist/less-1.4.2.min.js"></script>
 
-    <!-- [lesscss]() -->
-    <link rel="stylesheet/less" type="text/css" href="assets/styles/stylesheet.less">
-    <script src="bower_components/less/dist/less-1.4.2.min.js"></script>
+  <!-- Application -->
+  <script src="assets/js/app.js"></script>
 
-    <!-- Application -->
-    <script src="assets/js/app.js"></script>
-
-    <!-- [HTML5Shiv](https://github.com/aFarkas/html5shiv) -->
-    <!--[if lt IE 9]>
-        <script src="components/html5shiv/html5shiv.js"></script>
-        <![endif]-->
+  <!-- [HTML5Shiv](https://github.com/aFarkas/html5shiv) -->
+  <!--[if lt IE 9]>
+          <script src="components/html5shiv/html5shiv.js"></script>
+  <![endif]-->
 </head>
+
 <body data-ng-app="SimpleWorkCal">
 
-
 <div id="container" data-ng-controller="DateCtrl">
-  <!-- <h2 class="debug title">{{chosenDate | date: 'EEEE' | uppercase}}</h2> -->
-      <h1 class="logo">Simple Calendar</h1>
+
+  <!-- Logo -->
+  <div id="logo">
+    <h1>Simple Calendar</h1>
+    <h2>Click a date or task to edit</h2>
+  </div><!-- /logo -->
+
   <section class="calendar">
+    <!-- Date Picker -->
+    <input class="pickadate" data-datepicker="chosenDate" type="text" name="date" id="date">
 
-      <input data-datepicker="chosenDate" type="text" name="date" id="date">
+    <!-- Display Task Lists -->
+    <div class="tasks">
 
-      <div class="tasks">
-        <ul class="morning">
-          <li data-ng-repeat="task in tasks.slice(0,5)"><span class="hour">{{task.hour}}</span> {{task.detail}}</li>
-        </ul>
-        <ul class="evening">
-          <li data-ng-repeat="task in tasks.slice(5,10)"><span class="hour">{{task.hour}}</span> {{task.detail}}</li>
-        </ul>
-      </div><!-- \tasks  -->
+      <!-- Add inline editing to the elements
+      <ul class="morning">
+        <li data-ng-repeat="task in tasks.slice(0,5)" 
+            inline-edit="task.detail"
+            on-save="updateDetail($index)"
+            on-cancel="cancelEdit(task.detail)">
+              <span class="hour">{{task.hour}}</span> {{task.detail}}
+        </li>
+      </ul>
+      -->
+
+      <ul class="morning">
+        <li data-ng-repeat="task in tasks.slice(0,5)"><span class="hour">{{task.hour}}</span> {{task.detail}}</li>
+      </ul>
+
+      <ul class="evening">
+        <li data-ng-repeat="task in tasks.slice(5,10)"><span class="hour">{{task.hour}}</span> {{task.detail}}</li>
+      </ul>
+
+    </div><!-- \tasks  -->
   </section>
 
   <footer class="clear"><p>Copyright Sri Kadimisetty 2013</p></footer>
 </div><!-- /container -->
-
 </body>
 </html>
-

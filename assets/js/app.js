@@ -1,5 +1,6 @@
-angular.module('SimpleWorkCal', [])
-.factory('tasks', function() {
+app = angular.module('SimpleWorkCal', [])
+
+app.factory('tasks', function() {
 	return [ 
 		{'hour': '8 am'  , 'detail' : 'Buy some milk here'},
 		{'hour': '9 am'  , 'detail' : 'Visit the bank'},
@@ -14,12 +15,14 @@ angular.module('SimpleWorkCal', [])
 	];
 })
 
-.controller('DateCtrl', function($scope, tasks) {
-	var currentDate = new Date(); // Lets begin with today!!
+app.controller('DateCtrl', function($scope, tasks) {
+	console.log(moment());
+	var currentDate = new Date();
 	$scope.chosenDate = currentDate;
 	$scope.tasks = tasks;
-	// $scope.updateScope = function() {
-	// }
+	
+	// Update the scope in case it's
+	// interrupted by another apply mid updating
 	$scope.safeApply = function(fn) {
 		var phase = this.$root.$$phase;
 		if(phase == '$apply' || phase == '$digest') {
@@ -30,9 +33,18 @@ angular.module('SimpleWorkCal', [])
 			this.$apply(fn);
 		}
 	};
+
+	$scope.updateDetail = function(indx) {
+		console.log(indx)
+	}
+
+	$scope.cancelEdit = function(detailValue) {
+		console.log('canceled doind - ', detailValue);
+	}
+
 })
 
-.directive('datepicker', function($parse) {
+app.directive('datepicker', function($parse) {
 	return function(scope, element, attrs) {
 		parsed = $parse(attrs.datepicker);
 		element.pickadate({
@@ -60,3 +72,67 @@ angular.module('SimpleWorkCal', [])
 		});
 	}
 })
+
+
+
+
+// More
+// http://plnkr.co/edit/EsW7mV?p=preview
+
+
+// On esc event
+app.directive('onEsc', function() {
+  return function(scope, element, attrs) {
+    element.bind('keydown', function(e) {
+      if (e.keyCode === 27) {
+        scope.$apply(attrs.onEsc);
+      }
+    });
+  };
+});
+
+// On enter event
+app.directive('onEnter', function() {
+  return function(scope, elment, attrs) {
+    elment.bind('keypress', function(e) {
+      if (e.keyCode === 13) {
+        scope.$apply(attrs.onEnter);
+      }
+    });
+  };
+});
+
+// Inline edit directive
+app.directive('inlineEdit', function($timeout) {
+  return {
+    scope: {
+      model: '=inlineEdit',
+      handleSave: '&onSave',
+      handleCancel: '&onCancel'
+    },
+    link: function(scope, elm, attr) {
+      var previousValue;
+      
+      scope.edit = function() {
+        scope.editMode = true;
+        previousValue = scope.model;
+        
+        $timeout(function() {
+          elm.find('input')[0].focus();
+        }, 0, false);
+      };
+      scope.save = function() {
+        scope.editMode = false;
+        scope.handleSave({value: scope.model});
+      };
+      scope.cancel = function() {
+        scope.editMode = false;
+        scope.model = previousValue;
+        scope.handleCancel({value: scope.model});
+      };
+    },
+    templateUrl: 'inline-edit.html'
+  };
+});
+
+

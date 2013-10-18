@@ -31,6 +31,8 @@
 // @calendar-height: 660px;
 
 body {
+    width: 466px;
+    margin: 0 auto;
     background-color: @body-bg;
     // background-image: url('../img/deskbg.JPG');
     background-image: url('../img/deskbg-optimised-blue.JPG');
@@ -53,7 +55,7 @@ body {
     // height: @calendar-height;
     text-overflow: hidden;
 
-    input {
+    input.pickadate {
         padding: 1em 0;
         margin: 0;
         text-align: center;
@@ -140,12 +142,6 @@ body {
 
 }
 
-h2 {
-    text-align: center;
-    font-size: 0.6em;
-    font-family: @tasks-font;
-}
-
 .clear {
     clear: both;
 }
@@ -160,19 +156,28 @@ footer {
 }
 
 
+#logo {
+        margin: 0 auto;
+        margin-bottom: 146px;
+        color: @logo-color;
+        text-align: center;
 
+    h1 {
+        text-transform: uppercase;
+        font-size: 1.2em;
+        font-family: @logo-font;
+        font-weight: normal;
+    }
 
-h1.logo {
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 1.2em;
-    font-family: @logo-font;
-    font-weight: normal;
-    color: @logo-color;
-    // height: 50px;
-    // width: 50px;
-    // display: block;
-    margin: 0 auto;
-    margin-bottom: 147px;
+    h2 {
+        font-size: 0.8em;
+        font-family: @logo-font;
+        font-weight: normal;
+        color: darken(@logo-color, 5%);
 
+        // TODO: Fix bug and replace · with proper &middot;
+        &:before, &:after { content:" · "; }
+
+    }
 }
+
