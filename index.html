@@ -72,7 +72,8 @@
       -->
 
       <ul class="morning">
-        <li data-ng-repeat="task in tasks.slice(0,5)"><span class="hour">{{task.hour}}</span> {{task.detail}}</li>
+        <!-- <li data-ng-repeat="task in tasks.slice(0,5)"><span class="hour">{{task.hour}}</span> {{task.detail}}</li> -->
+        <li data-ng-repeat="task in tasks.slice(0,5)" style=""><span class="hour">{{task.hour}}</span> {{task.detail}}</li>
       </ul>
 
       <ul class="evening">
