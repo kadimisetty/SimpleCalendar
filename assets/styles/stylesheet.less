@@ -29,6 +29,7 @@
 
 // Sizes
 @calendar-width: 466px;
+@calendar-margin-width: @calendar-width/2;
 
 body {
     padding-top: 10px;
@@ -97,26 +98,53 @@ body {
         padding: 1em;
         height: 4em;
         display: block;
-
         color: @tasks-color;
+
+       *::-webkit-input-placeholder { color: @tasks-color; }
+       *:-moz-placeholder { color: @tasks-color; }
+       *:-ms-input-placeholder { color: @tasks-color; }
+
+
+        .taskdetail, .hour {
+            display: block;
+            float: left;
+        }
+
+        .hour {
+            width: 40px;
+            height: 100%;
+            line-height: 4em;
+            color: fade(@tasks-color, 40%);
+        }
+
+        .taskdetail {
+            width: @calendar-margin-width - 80px;
+            height: 100%;
+            float: right;
+            background: inherit;
+            border: 0;
+            color: @tasks-color;
+
+            margin: 0;
+            padding: 0 5px;
+
+            &:hover {
+                background: lighten(@tasks-bg-color, 10%);
+            }
+
+            &:focus {
+                background: lighten(@tasks-bg-color, 10%);
+                border: none;
+            }
+        }
+
         background-color: inherit;
         border: 1px solid @tasks-border-color;
 
         font-size: 0.8em;
         font-family: @tasks-font;
-        text-overflow: hidden;
 
         &:first-child { border-top: 0; }
-
-        &:hover {
-            background-color: lighten(@tasks-bg-color, 10%);
-            .hour { color: @tasks-color; }
-        }
-
-        .hour{
-            padding-right: 0.4em;
-            color: fade(@tasks-color, 60%);
-        }
     }
 
 }
@@ -132,7 +160,6 @@ footer {
 
 #logo {
         margin: 0 auto;
-        // margin-bottom: 146px;
         margin-bottom: 128px;
         color: @logo-color;
         text-align: center;
