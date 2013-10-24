@@ -59,24 +59,13 @@
     <!-- Display Task Lists -->
     <div class="tasks">
 
-      <!-- Add inline editing to the elements
-      <ul class="morning">
-        <li data-ng-repeat="task in tasks.slice(0,5)" 
-            inline-edit="task.detail"
-            on-save="updateDetail($index)"
-            on-cancel="cancelEdit(task.detail)">
-              <span class="hour">{{task.hour}}</span> {{task.detail}}
-        </li>
-      </ul>
-      -->
-
       <ul class="morning">
         <!-- <li data-ng-repeat="task in tasks.slice(0,5)"><span class="hour">{{task.hour}}</span> {{task.detail}}</li> -->
-        <li data-ng-repeat="task in tasks.slice(0,5)" style=""><span class="hour">{{task.hour}}</span> {{task.detail}}</li>
+        <li data-ng-repeat="task in tasks.slice(0,5)"><span class="hour">{{ $index+8 }} am</span> {{task.detail}}</li>
       </ul>
 
       <ul class="evening">
-        <li data-ng-repeat="task in tasks.slice(5,10)"><span class="hour">{{task.hour}}</span> {{task.detail}}</li>
+        <li data-ng-repeat="task in tasks.slice(5,10)"><span class="hour">{{ $index+1}} pm</span> {{task.detail}}</li>
       </ul>
 
     </div><!-- \tasks  -->
