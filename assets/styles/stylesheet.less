@@ -43,6 +43,8 @@ body {
 
 #container {
     margin: 50px auto;
+    margin-top: 30px;
+
     padding: 0;
 
     width: @calendar-width;
@@ -130,7 +132,8 @@ footer {
 
 #logo {
         margin: 0 auto;
-        margin-bottom: 146px;
+        // margin-bottom: 146px;
+        margin-bottom: 128px;
         color: @logo-color;
         text-align: center;
 
@@ -139,9 +142,27 @@ footer {
         font-family: @logo-font;
         font-weight: normal;
         text-transform: uppercase;
+
+        display: block;
+        width: 72px;
+        height: 72px;
+        margin: 0 auto;
+
+    background-image: url('../img/SmallSimpleCalendarlogo.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+
+    // Hide the text
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+
     }
 
     h2 {
+        clear: both;
+        display: none;
+
         color: darken(@logo-color, 5%);
 
         font-size: 0.8em;
